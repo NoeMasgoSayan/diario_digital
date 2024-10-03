@@ -10,6 +10,13 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <!-- Toastify JS -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/style.css" />
     <script type="module" src="./assets/js/script.js"></script>
   </head>
@@ -60,7 +67,7 @@
       </nav>
     </header>
 
-    <!-- Modal -->
+    <!-- Modal Inicio Sesión-->
     <div
       class="modal fade"
       id="signin-modal"
@@ -96,7 +103,7 @@
       </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Registrarse-->
     <div
       class="modal fade"
       id="signup-modal"
@@ -115,25 +122,50 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">...</div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="modal-body">
+            <form id="signup-form">
+              <div class="mb-3">
+                <label for="signup-email" class="form-label">Correo</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="correo@ejemplo.com"
+                  id="signup-email"
+                />
+              </div>
+              <div class="mb-4">
+                <label for="signup-password" class="form-label"
+                  >Contraseña</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="signup-password"
+                />
+              </div>
+
+              <div>
+                <input
+                  type="submit"
+                  class="btn btn-primary"
+                  value="Registrarse"
+                />
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Toastify CDN -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
     ></script>
   </body>
 </html>
