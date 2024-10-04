@@ -25,6 +25,14 @@ signUpForm.addEventListener("submit", async (e) => {
     console.log(userCredentials);
     // Mostrar mensaje de éxito
     showMessage("Usuario registrado", "success");
+
+    // Cerrar el modal
+    const signupModal = document.querySelector("#signup-modal");
+    const modal = bootstrap.Modal.getInstance(signupModal);
+    modal.hide();
+
+    // Limpiar el formulario
+    signUpForm.reset();
   } catch (error) {
     // Registro fallido
     console.log(error);
