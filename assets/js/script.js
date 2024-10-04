@@ -5,6 +5,7 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/f
 import { checkLogin } from "./checkLogin.js";
 // Importamos el archivo de registro
 import "./signupForms.js";
+import "./signOut.js";
 
 // Manejo de la autenticación
 onAuthStateChanged(auth, async (user) => {
