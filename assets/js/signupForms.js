@@ -22,7 +22,6 @@ signUpForm.addEventListener("submit", async (e) => {
     );
 
     // Registro exitoso
-    console.log(userCredentials);
     // Mostrar mensaje de éxito
     showMessage("Usuario registrado", "success");
 
