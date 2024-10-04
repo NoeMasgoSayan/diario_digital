@@ -6,6 +6,7 @@ import { checkLogin } from "./checkLogin.js";
 // Importamos el archivo de registro
 import "./signupForms.js";
 import "./signOut.js";
+import "./signinForms.js";
 
 // Manejo de la autenticación
 onAuthStateChanged(auth, async (user) => {

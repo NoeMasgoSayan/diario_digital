@@ -40,7 +40,7 @@ signUpForm.addEventListener("submit", async (e) => {
       showMessage("El correo ya está en uso", "error");
     } else if (error.code === "auth/weak-password") {
       showMessage("La contraseña es muy debil", "error");
-    } else if ((error.code === "auth/invalid-email", "error")) {
+    } else if (error.code === "auth/invalid-email") {
       showMessage("Correo electrónico inválido", "error");
     } else {
       showMessage(error.code, "error");

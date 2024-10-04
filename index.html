@@ -22,9 +22,9 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav class="navbar navbar-expand-lg bg-body-black">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Diario Digital</a>
+          <a class="navbar-brand text-white" href="#">Diario Digital</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -40,7 +40,7 @@
             <ul class="navbar-nav ms-auto">
               <li class="nav-item logged-out">
                 <a
-                  class="nav-link"
+                  class="nav-link text-white"
                   href="#"
                   data-bs-toggle="modal"
                   data-bs-target="#signin-modal"
@@ -49,7 +49,7 @@
               </li>
               <li class="nav-item logged-out">
                 <a
-                  class="nav-link"
+                  class="nav-link text-white"
                   href="#"
                   data-bs-toggle="modal"
                   data-bs-target="#signup-modal"
@@ -57,7 +57,9 @@
                 >
               </li>
               <li class="nav-item logged-in">
-                <a class="nav-link" id="logout" href="#">Cerrar Sesión</a>
+                <a class="nav-link text-white" id="logout" href="#"
+                  >Cerrar Sesión</a
+                >
               </li>
             </ul>
           </div>
@@ -86,16 +88,36 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">...</div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="modal-body">
+            <form id="signin-form">
+              <div class="mb-3">
+                <label for="signin-email" class="form-label">Correo</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="correo@ejemplo.com"
+                  id="signin-email"
+                />
+              </div>
+              <div class="mb-4">
+                <label for="signin-password" class="form-label"
+                  >Contraseña</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="signin-password"
+                />
+              </div>
+
+              <div>
+                <input
+                  type="submit"
+                  class="btn btn-primary"
+                  value="Iniciar Sesión"
+                />
+              </div>
+            </form>
           </div>
         </div>
       </div>
