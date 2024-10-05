@@ -1,3 +1,5 @@
+import { setupTasks } from "./setupTasks.js";
+
 const loggedIn = document.querySelectorAll(".logged-in");
 const loggedOut = document.querySelectorAll(".logged-out");
 const mainContainer = document.querySelector("#main-container");
@@ -12,6 +14,9 @@ export const checkLogin = (user) => {
     // Mostramos el main container
     mainContainer.style.display = "block";
     saludo.textContent = `Bienvenid@ ${user.email}`;
+
+    // Cargamos las tareas
+    setupTasks();
   } else {
     loggedOut.forEach((element) => (element.style.display = "block"));
     loggedIn.forEach((element) => (element.style.display = "none"));

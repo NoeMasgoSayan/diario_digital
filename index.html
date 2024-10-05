@@ -69,6 +69,46 @@
 
     <main id="main-container" class="p-4 text-light">
       <p id="saludo">asjkhdaskjhdajk</p>
+
+      <div class="">
+        <form
+          action=""
+          class="w-50 border border-2 rounded-3 p-3"
+          id="task-form"
+        >
+          <div class="mb-3"><h4>Agregar una nueva tarea</h4></div>
+          <hr />
+          <div class="mb-3">
+            <label for="title" class="form-label">Título</label>
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              placeholder="Nombre de la tarea..."
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea
+              class="form-control"
+              rows="3"
+              id="description"
+              placeholder="Hoy haré..."
+              required
+            ></textarea>
+          </div>
+          <hr />
+          <div class="mb-1">
+            <input
+              type="submit"
+              value="Crear tarea"
+              id="btn-agregar"
+              class="btn btn-primary"
+            />
+          </div>
+        </form>
+      </div>
     </main>
     <!-- Modal Inicio Sesión-->
     <div
