@@ -14,7 +14,9 @@ const tasksContainer = document.querySelector("#tasks-container");
 let editStatus = false;
 let editId = "";
 
-export const setupTasks = () => {
+export const setupTasks = (user) => {
+  console.log(user.displayName);
+
   // CREATE
   taskForm.addEventListener("submit", async (e) => {
     // Prevenir que la página se recargue
@@ -28,7 +30,7 @@ export const setupTasks = () => {
     try {
       if (!editStatus) {
         // Crear tarea
-        await createTask(title, description);
+        await createTask(title, description, user.displayName, user.photoURL);
         // Mostrar mensaje de éxito
         showMessage("Tarea creada", "success");
         // Limpiar el formulario
@@ -66,14 +68,18 @@ export const setupTasks = () => {
 
       tasksHtml += `
       <article class="task-container border border-2 rounded-2 p-3 my-3">
-        <header class="d-flex justify-content-between">
-          <h4>${data.title}</h4>
+        <header class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center gap-3">
+            <img class="task-profile-picture rounded-circle" src="${data.userImage}" alt="${data.userName}" />
+            <p class="m-0">${data.userName}</p>
+          </div>
           <div>
             <button class="btn btn-info btn-editar" data-id="${doc.id}"><i class="bi bi-pencil-fill"></i> Editar</button>
             <button class="btn btn-danger btn-eliminar" data-id="${doc.id}"><i class="bi bi-trash3-fill"></i> Eliminar</button>
           </div>
         </header>
         <hr />
+        <h4>${data.title}</h4>
         <p>${data.description}</p>
       </article>
       `;
