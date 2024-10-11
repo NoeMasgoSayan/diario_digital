@@ -9,6 +9,7 @@
 
 .btn-eliminar:hover {
   background-color: #ff4191;
+  border-color: #ff4191;
 }
 
 .btn-editar {
@@ -18,4 +19,5 @@
 
 .btn-editar:hover {
   background-color: #ad49e1;
+  border-color: #ad49e1;
 }

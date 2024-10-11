@@ -31,16 +31,27 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
 // Initialize Firestore
 export const db = getFirestore();
 
 // Operaciones CRUD
-export const createTask = (title, description, userName, userImage) =>
+export const createTask = (
+  title,
+  description,
+  userName,
+  userImage,
+  userEmail
+) =>
   //TODO Aquí se añade todo lo que quieres que aparezca
-  addDoc(collection(db, "tasks"), { title, description, userName, userImage });
+  addDoc(collection(db, "tasks"), {
+    title,
+    description,
+    userName,
+    userImage,
+    userEmail,
+  });
 
 export const onGetTask = (callback) =>
   onSnapshot(collection(db, "tasks"), callback);
