@@ -1,11 +1,21 @@
-body {
-  background-color: rgb(102, 102, 102);
-}
-
-header nav {
-  background-color: black;
-}
-
 .task-profile-picture {
   width: 40px;
+}
+
+.btn-eliminar {
+  background-color: #e90074;
+  border-color: #e90074;
+}
+
+.btn-eliminar:hover {
+  background-color: #ff4191;
+}
+
+.btn-editar {
+  background-color: #ebd3f8;
+  border-color: #ebd3f8;
+}
+
+.btn-editar:hover {
+  background-color: #ad49e1;
 }
