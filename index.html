@@ -10,6 +10,11 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <!-- Bootswatch-->
+    <!--<link
+      rel="stylesheet"
+      href="https://bootswatch.com/5/morph/bootstrap.min.css"
+    />-->
     <!-- Bootstrap Icons -->
     <link
       rel="stylesheet"
@@ -209,12 +214,25 @@
           <div class="modal-body">
             <form id="signup-form">
               <div class="mb-3">
+                <label for="signup-name" class="form-label"
+                  >Nombre Completo</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Ingresa tu nombre"
+                  id="signup-name"
+                  required
+                />
+              </div>
+              <div class="mb-3">
                 <label for="signup-email" class="form-label">Correo</label>
                 <input
                   type="email"
                   class="form-control"
                   placeholder="correo@ejemplo.com"
                   id="signup-email"
+                  required
                 />
               </div>
               <div class="mb-4">

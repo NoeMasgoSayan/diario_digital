@@ -2,7 +2,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
 
 // Autenticación
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import {
+  getAuth,
+  updateProfile,
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 // Firestore
 import {
@@ -42,7 +45,8 @@ export const createTask = (
   description,
   userName,
   userImage,
-  userEmail
+  userEmail,
+  timeData
 ) =>
   //TODO Aquí se añade todo lo que quieres que aparezca
   addDoc(collection(db, "tasks"), {
@@ -51,6 +55,7 @@ export const createTask = (
     userName,
     userImage,
     userEmail,
+    timeData,
   });
 
 export const onGetTask = (callback) =>
@@ -62,3 +67,5 @@ export const updateTask = (id, newData) =>
   updateDoc(doc(db, "tasks", id), newData);
 
 export const deleteTask = (id) => deleteDoc(doc(db, "tasks", id));
+
+export { updateProfile };

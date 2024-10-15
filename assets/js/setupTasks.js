@@ -28,6 +28,9 @@ export const setupTasks = (user) => {
 
     // Crear una nueva tarea
     try {
+      const timeData = new Date().toLocaleString("es-PE", {
+        timeZone: "America/Lima",
+      });
       if (!editStatus) {
         // Crear tarea
         await createTask(
@@ -35,14 +38,15 @@ export const setupTasks = (user) => {
           description,
           user.displayName,
           user.photoURL,
-          user.email
+          user.email,
+          timeData
         );
         // Mostrar mensaje de éxito
         showMessage("Tarea creada", "success");
         // Limpiar el formulario
       } else {
         // Actualizar tarea
-        await updateTask(editId, { title, description });
+        await updateTask(editId, { title, description, timeData });
         // Mostrar mensaje de éxito
         showMessage("Tarea actualizada", "success");
 
@@ -77,9 +81,10 @@ export const setupTasks = (user) => {
         <header class="d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center gap-3">
             <img class="task-profile-picture rounded-circle" src="${
-              data.userImage
+              data.userImage ? data.userImage : "./assets/img/perfil.png"
             }" alt="${data.userName}" />
             <p class="m-0">${data.userName}</p>
+            <p class="m-0 gap-5">${data.timeData}</p>
           </div>
           ${
             user.email === data.userEmail
