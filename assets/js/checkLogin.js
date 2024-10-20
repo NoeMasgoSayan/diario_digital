@@ -1,4 +1,5 @@
 import { setupTasks } from "./setupTasks.js";
+import { setupComments } from "./setupComments.js";
 
 const loggedIn = document.querySelectorAll(".logged-in");
 const loggedOut = document.querySelectorAll(".logged-out");
@@ -17,6 +18,7 @@ export const checkLogin = (user) => {
 
     // Cargamos las tareas
     setupTasks(user);
+    setupComments(user);
   } else {
     loggedOut.forEach((element) => (element.style.display = "block"));
     loggedIn.forEach((element) => (element.style.display = "none"));

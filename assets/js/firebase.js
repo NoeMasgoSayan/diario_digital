@@ -69,3 +69,30 @@ export const updateTask = (id, newData) =>
 export const deleteTask = (id) => deleteDoc(doc(db, "tasks", id));
 
 export { updateProfile };
+
+// * Comentarios
+export const createComments = (
+  description,
+  userName,
+  userImage,
+  userEmail,
+  timeData
+) =>
+  //TODO Aquí se añade todo lo que quieres que aparezca
+  addDoc(collection(db, "comments"), {
+    description,
+    userName,
+    userImage,
+    userEmail,
+    timeData,
+  });
+
+export const onGetComments = (callback) =>
+  onSnapshot(collection(db, "comments"), callback);
+
+export const getComments = (id) => getDoc(doc(db, "comments", id));
+
+export const updateComments = (id, newData) =>
+  updateDoc(doc(db, "comments", id), newData);
+
+export const deleteComments = (id) => deleteDoc(doc(db, "comments", id));

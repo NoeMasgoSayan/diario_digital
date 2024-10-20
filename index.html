@@ -129,6 +129,43 @@
           </article>
         </div>
       </div>
+
+      <!--* Comentarios -->
+      <div class="">
+        <form
+          action=""
+          class="w-50 border border-2 rounded-3 p-3"
+          id="comment-form"
+        >
+          <div class="mb-3"><h4>Añade un comentario</h4></div>
+          <hr />
+          <div class="mb-3">
+            <label for="description-comment" class="form-label"></label>
+            <textarea
+              class="form-control"
+              rows="3"
+              id="description-comment"
+              placeholder="Hoy haré..."
+              required
+            ></textarea>
+          </div>
+          <hr />
+          <div class="mb-1">
+            <input
+              type="submit"
+              value="Crear comentario"
+              id="btn-agregar-comentario"
+              class="btn btn-primary"
+            />
+          </div>
+        </form>
+
+        <div id="comments-container" class="mt-3">
+          <article class="comment-container border border-2 rounded-2 p-3 my-3">
+            <p>Descripción de la tarea</p>
+          </article>
+        </div>
+      </div>
     </main>
     <!-- Modal Inicio Sesión-->
     <div
