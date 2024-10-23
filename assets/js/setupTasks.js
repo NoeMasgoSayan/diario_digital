@@ -85,7 +85,7 @@ export const setupTasks = (user) => {
             }" alt="${data.userName}" />
             <p class="m-0">${data.userName}</p>
             <p class="m-0 gap-5">${data.timeData}</p>
-          </div>git
+          </div>
           ${
             user.email === data.userEmail
               ? `<div>

@@ -128,7 +128,7 @@ export const setupComments = (user) => {
     btnsEliminar.forEach((btn) => {
       btn.addEventListener("click", ({ target: { dataset } }) => {
         deleteComments(dataset.id);
-        showMessage("Comentario creado", "success");
+        showMessage("Comentario eliminado", "success");
       });
     });
   });
