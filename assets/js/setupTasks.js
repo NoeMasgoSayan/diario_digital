@@ -75,6 +75,9 @@ export const setupTasks = (user) => {
 
     querySnapshot.forEach((doc) => {
       const data = doc.data();
+      //! Nuevoooo
+      let publicationId = doc.id;
+      localStorage.setItem("postId", publicationId);
 
       tasksHtml += `
       <article class="task-container border border-2 rounded-2 p-3 my-3">
@@ -111,6 +114,7 @@ export const setupTasks = (user) => {
     // UPDATE
     // Obtenemos los botones de editar
     const btnsEditar = document.querySelectorAll(".btn-editar");
+    const btnsComentar = document.querySelectorAll(".btn-comentar");
 
     // Iteramos sobre cada botón
     btnsEditar.forEach((btn) => {
@@ -131,6 +135,21 @@ export const setupTasks = (user) => {
         // Cambiamos lo que muestra el formulario
         document.getElementById("form-title").innerHTML = "Editar tarea";
         taskForm["btn-agregar"].value = "Guardar cambios";
+      });
+    });
+
+    btnsComentar.forEach((btn) => {
+      btn.addEventListener("click", async ({ target: { dataset } }) => {
+        // Obtenemos el documento
+        const doc = await getTask(dataset.id);
+        // Obtenemos los datos
+        const task = doc.data();
+
+        localStorage.setItem("taskId", task);
+        // Obtenemos el id del dataset
+        //const taskId = dataset.id;
+        //console.log(dataset.id);
+        console.log(task);
       });
     });
 

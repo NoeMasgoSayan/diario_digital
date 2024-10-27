@@ -28,14 +28,18 @@ export const setupComments = (user) => {
       const timeData = new Date().toLocaleString("es-PE", {
         timeZone: "America/Lima",
       });
+
       if (!editStatus) {
+        let postId = localStorage.getItem("publicationId");
+
         // Crear comentario
         await createComments(
           description,
           user.displayName,
           user.photoURL,
           user.email,
-          timeData
+          timeData,
+          postId
         );
         // Mostrar mensaje de éxito
         showMessage("Comentario creado", "success");
@@ -68,30 +72,43 @@ export const setupComments = (user) => {
 
     querySnapshot.forEach((doc) => {
       const data = doc.data();
+      //! Id del comentario segun yo
+      let commentId = doc.id;
 
-      commentsHtml += `
-      <article class="comment-container border border-2 rounded-2 p-3 my-3 text-light">
-        <header class="d-flex justify-content-between">
-          <div class="d-flex align-items-center gap-3">
-            <img class="task-profile-picture rounded-circle" src="${
-              data.userImage ? data.userImage : "./assets/img/perfil.png"
-            }" alt="${data.userName}" />
-            <p class="m-0">${data.userName}</p>
-            <p class="m-0 gap-5">${data.timeData}</p>
-          </div>
-          ${
-            user.email === data.userEmail
-              ? `<div>
-            <button class="btn btn-info btn-editar" data-id="${doc.id}"><i class="bi bi-pencil-fill"></i> Editar</button>
-            <button class="btn btn-danger btn-eliminar" data-id="${doc.id}"><i class="bi bi-trash3-fill"></i> Eliminar</button>
-          </div>`
-              : `<div></div>`
-          }
-        </header>
-        <hr />
-        <p>${data.description}</p>
-      </article>
-      `;
+      //! Id de la publicación
+      let postId = localStorage.getItem("publicationId");
+      let idPost = localStorage.getItem("task");
+
+      console.log(idPost);
+      console.log(postId);
+      console.log(commentId);
+      console.log(data.postId);
+
+      if (data.postId === postId) {
+        commentsHtml += `
+        <article class="comment-container border border-2 rounded-2 p-3 my-3 text-light">
+          <header class="d-flex justify-content-between">
+            <div class="d-flex align-items-center gap-3">
+              <img class="task-profile-picture rounded-circle" src="${
+                data.userImage ? data.userImage : "./assets/img/perfil.png"
+              }" alt="${data.userName}" />
+              <p class="m-0">${data.userName}</p>
+              <p class="m-0 gap-5">${data.timeData}</p>
+            </div>
+            ${
+              user.email === data.userEmail
+                ? `<div>
+              <button class="btn btn-info btn-editar" data-id="${doc.id}"><i class="bi bi-pencil-fill"></i> Editar</button>
+              <button class="btn btn-danger btn-eliminar" data-id="${doc.id}"><i class="bi bi-trash3-fill"></i> Eliminar</button>
+            </div>`
+                : `<div></div>`
+            }
+          </header>
+          <hr />
+          <p>${data.description}</p>
+        </article>
+        `;
+      }
     });
 
     // Mostrar los comentarios en el DOM
