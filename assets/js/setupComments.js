@@ -70,7 +70,7 @@ export const setupComments = (user) => {
       const data = doc.data();
 
       commentsHtml += `
-      <article class="comment-container border border-2 rounded-2 p-3 my-3">
+      <article class="comment-container border border-2 rounded-2 p-3 my-3 text-light">
         <header class="d-flex justify-content-between">
           <div class="d-flex align-items-center gap-3">
             <img class="task-profile-picture rounded-circle" src="${
@@ -128,7 +128,7 @@ export const setupComments = (user) => {
     btnsEliminar.forEach((btn) => {
       btn.addEventListener("click", ({ target: { dataset } }) => {
         deleteComments(dataset.id);
-        showMessage("Comentario creado", "success");
+        showMessage("Comentario eliminado", "success");
       });
     });
   });
