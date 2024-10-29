@@ -140,16 +140,10 @@ export const setupTasks = (user) => {
 
     btnsComentar.forEach((btn) => {
       btn.addEventListener("click", async ({ target: { dataset } }) => {
-        // Obtenemos el documento
-        const doc = await getTask(dataset.id);
-        // Obtenemos los datos
-        const task = doc.data();
+        // ID de la tarea
+        const taskId = dataset.id;
 
-        localStorage.setItem("taskId", task);
-        // Obtenemos el id del dataset
-        //const taskId = dataset.id;
-        //console.log(dataset.id);
-        console.log(task);
+        localStorage.setItem("idPost", taskId);
       });
     });
 

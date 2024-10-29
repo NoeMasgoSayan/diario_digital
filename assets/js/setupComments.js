@@ -13,6 +13,7 @@ const commentsContainer = document.querySelector("#comments-container");
 // Variables para la edición
 let editStatus = false;
 let editId = "";
+let commentsData = [];
 
 export const setupComments = (user) => {
   // CREATE
@@ -30,6 +31,7 @@ export const setupComments = (user) => {
       });
 
       if (!editStatus) {
+        //? id de las publicaciones
         let postId = localStorage.getItem("publicationId");
 
         // Crear comentario
@@ -72,17 +74,17 @@ export const setupComments = (user) => {
 
     querySnapshot.forEach((doc) => {
       const data = doc.data();
+      /*
       //! Id del comentario segun yo
       let commentId = doc.id;
-
+*/
       //! Id de la publicación
-      let postId = localStorage.getItem("publicationId");
-      let idPost = localStorage.getItem("task");
+      let postId = localStorage.getItem("idPost");
 
-      console.log(idPost);
-      console.log(postId);
-      console.log(commentId);
-      console.log(data.postId);
+      console.log(`Post id localstorage ${postId}`);
+      console.log(`Post id comment ${data.postId}`);
+
+      commentsContainer.innerHTML = "";
 
       if (data.postId === postId) {
         commentsHtml += `
