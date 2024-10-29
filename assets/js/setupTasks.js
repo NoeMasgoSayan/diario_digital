@@ -6,6 +6,7 @@ import {
   getTask,
 } from "./firebase.js";
 import { showMessage } from "./toastMessage.js";
+import { showComments } from "./setupComments.js";
 
 const taskForm = document.querySelector("#task-form");
 const tasksContainer = document.querySelector("#tasks-container");
@@ -144,6 +145,7 @@ export const setupTasks = (user) => {
         const taskId = dataset.id;
 
         localStorage.setItem("idPost", taskId);
+        showComments(taskId);
       });
     });
 

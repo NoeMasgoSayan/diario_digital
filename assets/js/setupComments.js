@@ -14,8 +14,10 @@ const commentsContainer = document.querySelector("#comments-container");
 let editStatus = false;
 let editId = "";
 let commentsData = [];
+var globalUser = null;
 
 export const setupComments = (user) => {
+  globalUser = user;
   // CREATE
   commentForm.addEventListener("submit", async (e) => {
     // Prevenir que la página se recargue
@@ -70,14 +72,14 @@ export const setupComments = (user) => {
 
   // READ
   onGetComments((querySnapshot) => {
-    let commentsHtml = "";
+    commentsData = [];
 
     querySnapshot.forEach((doc) => {
-      const data = doc.data();
+      commentsData.push(doc.data());
       /*
+      const data = doc.data();
       //! Id del comentario segun yo
       let commentId = doc.id;
-*/
       //! Id de la publicación
       let postId = localStorage.getItem("idPost");
 
@@ -110,11 +112,11 @@ export const setupComments = (user) => {
           <p>${data.description}</p>
         </article>
         `;
-      }
+      } */
     });
 
     // Mostrar los comentarios en el DOM
-    commentsContainer.innerHTML = commentsHtml;
+    // commentsContainer.innerHTML = commentsHtml;
 
     // UPDATE
     // Obtenemos los botones de editar
@@ -152,3 +154,30 @@ export const setupComments = (user) => {
     });
   });
 };
+
+export function showComments(postId) {
+  let commentsHtml = "";
+
+  console.log(`Post id ${postId}`);
+
+  commentsData.forEach((comment) => {
+    if (comment.postId === postId) {
+      commentsHtml += `
+      <article class="comment-container border border-2 rounded-2 p-3 my-3 text-light">
+        <header class="d-flex justify-content-between">
+          <div class="d-flex align-items-center gap-3">
+            <img class="task-profile-picture rounded-circle" src="${
+              comment.userImage ? comment.userImage : "./assets/img/perfil.png"
+            }" alt="${comment.userName}" />
+            <p class="m-0">${comment.userName}</p>
+            <p class="m-0 gap-5">${comment.timeData}</p>
+        </header>
+        <hr />
+        <p>${comment.description}</p>
+      </article>
+      `;
+    }
+  });
+
+  commentsContainer.innerHTML = commentsHtml;
+}
