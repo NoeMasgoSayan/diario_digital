@@ -33,8 +33,8 @@ export const setupComments = (user) => {
       });
 
       if (!editStatus) {
-        //? id de las publicaciones
-        let postId = localStorage.getItem("publicationId");
+        //TODO: id de las publicaciones
+        let postId = localStorage.getItem("idPost");
 
         // Crear comentario
         await createComments(
@@ -76,47 +76,11 @@ export const setupComments = (user) => {
 
     querySnapshot.forEach((doc) => {
       commentsData.push(doc.data());
-      /*
-      const data = doc.data();
-      //! Id del comentario segun yo
-      let commentId = doc.id;
-      //! Id de la publicación
+
       let postId = localStorage.getItem("idPost");
 
-      console.log(`Post id localstorage ${postId}`);
-      console.log(`Post id comment ${data.postId}`);
-
-      commentsContainer.innerHTML = "";
-
-      if (data.postId === postId) {
-        commentsHtml += `
-        <article class="comment-container border border-2 rounded-2 p-3 my-3 text-light">
-          <header class="d-flex justify-content-between">
-            <div class="d-flex align-items-center gap-3">
-              <img class="task-profile-picture rounded-circle" src="${
-                data.userImage ? data.userImage : "./assets/img/perfil.png"
-              }" alt="${data.userName}" />
-              <p class="m-0">${data.userName}</p>
-              <p class="m-0 gap-5">${data.timeData}</p>
-            </div>
-            ${
-              user.email === data.userEmail
-                ? `<div>
-              <button class="btn btn-info btn-editar" data-id="${doc.id}"><i class="bi bi-pencil-fill"></i> Editar</button>
-              <button class="btn btn-danger btn-eliminar" data-id="${doc.id}"><i class="bi bi-trash3-fill"></i> Eliminar</button>
-            </div>`
-                : `<div></div>`
-            }
-          </header>
-          <hr />
-          <p>${data.description}</p>
-        </article>
-        `;
-      } */
+      showComments(postId);
     });
-
-    // Mostrar los comentarios en el DOM
-    // commentsContainer.innerHTML = commentsHtml;
 
     // UPDATE
     // Obtenemos los botones de editar
@@ -161,6 +125,8 @@ export function showComments(postId) {
   console.log(`Post id ${postId}`);
 
   commentsData.forEach((comment) => {
+    console.log(`Post id ${postId} === ${comment.postId}`);
+
     if (comment.postId === postId) {
       commentsHtml += `
       <article class="comment-container border border-2 rounded-2 p-3 my-3 text-light">
