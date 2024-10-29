@@ -6,6 +6,7 @@ import {
   getTask,
 } from "./firebase.js";
 import { showMessage } from "./toastMessage.js";
+import { showComments } from "./setupComments.js";
 
 const taskForm = document.querySelector("#task-form");
 const tasksContainer = document.querySelector("#tasks-container");
@@ -91,12 +92,14 @@ export const setupTasks = (user) => {
               ? `<div>
             <button class="btn btn-info btn-editar" data-id="${doc.id}"><i class="bi bi-pencil-fill"></i> Editar</button>
             <button class="btn btn-danger btn-eliminar" data-id="${doc.id}"><i class="bi bi-trash3-fill"></i> Eliminar</button>
-            <button type="button" class="btn btn-primary btn-comentar" data-id="${doc.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              <i class="bi bi-chat-square-dots"></i> Comentar
-            </button>
           </div>`
               : `<div></div>`
           }
+          <button type="button" class="btn btn-primary btn-comentar" data-id="${
+            doc.id
+          }" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <i class="bi bi-chat-square-dots"></i> Comentar
+            </button>
         </header>
         <hr />
         <h4>${data.title}</h4>
@@ -111,6 +114,7 @@ export const setupTasks = (user) => {
     // UPDATE
     // Obtenemos los botones de editar
     const btnsEditar = document.querySelectorAll(".btn-editar");
+    const btnsComentar = document.querySelectorAll(".btn-comentar");
 
     // Iteramos sobre cada botón
     btnsEditar.forEach((btn) => {
@@ -131,6 +135,16 @@ export const setupTasks = (user) => {
         // Cambiamos lo que muestra el formulario
         document.getElementById("form-title").innerHTML = "Editar tarea";
         taskForm["btn-agregar"].value = "Guardar cambios";
+      });
+    });
+
+    btnsComentar.forEach((btn) => {
+      btn.addEventListener("click", async ({ target: { dataset } }) => {
+        // ID de la tarea
+        const taskId = dataset.id;
+
+        localStorage.setItem("idPost", taskId);
+        showComments(taskId);
       });
     });
 

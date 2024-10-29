@@ -13,8 +13,11 @@ const commentsContainer = document.querySelector("#comments-container");
 // Variables para la edición
 let editStatus = false;
 let editId = "";
+let commentsData = [];
+var globalUser = null;
 
 export const setupComments = (user) => {
+  globalUser = user;
   // CREATE
   commentForm.addEventListener("submit", async (e) => {
     // Prevenir que la página se recargue
@@ -28,14 +31,19 @@ export const setupComments = (user) => {
       const timeData = new Date().toLocaleString("es-PE", {
         timeZone: "America/Lima",
       });
+
       if (!editStatus) {
+        //TODO: id de las publicaciones
+        let postId = localStorage.getItem("idPost");
+
         // Crear comentario
         await createComments(
           description,
           user.displayName,
           user.photoURL,
           user.email,
-          timeData
+          timeData,
+          postId
         );
         // Mostrar mensaje de éxito
         showMessage("Comentario creado", "success");
@@ -64,38 +72,15 @@ export const setupComments = (user) => {
 
   // READ
   onGetComments((querySnapshot) => {
-    let commentsHtml = "";
+    commentsData = [];
 
     querySnapshot.forEach((doc) => {
-      const data = doc.data();
+      commentsData.push(doc.data());
 
-      commentsHtml += `
-      <article class="comment-container border border-2 rounded-2 p-3 my-3 text-light">
-        <header class="d-flex justify-content-between">
-          <div class="d-flex align-items-center gap-3">
-            <img class="task-profile-picture rounded-circle" src="${
-              data.userImage ? data.userImage : "./assets/img/perfil.png"
-            }" alt="${data.userName}" />
-            <p class="m-0">${data.userName}</p>
-            <p class="m-0 gap-5">${data.timeData}</p>
-          </div>
-          ${
-            user.email === data.userEmail
-              ? `<div>
-            <button class="btn btn-info btn-editar" data-id="${doc.id}"><i class="bi bi-pencil-fill"></i> Editar</button>
-            <button class="btn btn-danger btn-eliminar" data-id="${doc.id}"><i class="bi bi-trash3-fill"></i> Eliminar</button>
-          </div>`
-              : `<div></div>`
-          }
-        </header>
-        <hr />
-        <p>${data.description}</p>
-      </article>
-      `;
+      let postId = localStorage.getItem("idPost");
+
+      showComments(postId);
     });
-
-    // Mostrar los comentarios en el DOM
-    commentsContainer.innerHTML = commentsHtml;
 
     // UPDATE
     // Obtenemos los botones de editar
@@ -133,3 +118,32 @@ export const setupComments = (user) => {
     });
   });
 };
+
+export function showComments(postId) {
+  let commentsHtml = "";
+
+  console.log(`Post id ${postId}`);
+
+  commentsData.forEach((comment) => {
+    console.log(`Post id ${postId} === ${comment.postId}`);
+
+    if (comment.postId === postId) {
+      commentsHtml += `
+      <article class="comment-container border border-2 rounded-2 p-3 my-3 text-light">
+        <header class="d-flex justify-content-between">
+          <div class="d-flex align-items-center gap-3">
+            <img class="task-profile-picture rounded-circle" src="${
+              comment.userImage ? comment.userImage : "./assets/img/perfil.png"
+            }" alt="${comment.userName}" />
+            <p class="m-0">${comment.userName}</p>
+            <p class="m-0 gap-5">${comment.timeData}</p>
+        </header>
+        <hr />
+        <p>${comment.description}</p>
+      </article>
+      `;
+    }
+  });
+
+  commentsContainer.innerHTML = commentsHtml;
+}
